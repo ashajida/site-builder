@@ -20,6 +20,19 @@ body {
 
 }
 
+
+.btn {
+  @apply border rounded-sm;
+}
+
+.btn-primary {
+  @apply bg-blue-500;
+}
+
+/* .space-manager  div:not(:has(div:hover)):hover {
+  @apply bg-black;
+} */
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
