@@ -1,29 +1,26 @@
-type Margin = {
-    top?: string,
-    bottom?: string,
-    left?: string,
-    right?: string
+import { Dispatch } from "react"
+
+type Widget = {
+    id: string,
+    name: string,
+    content: Array<Widget>,
+    type: string,
+    style: Record<any, any>
 }
 
-type Padding = {
-    top: string,
-    bottom: string,
-    left: string
+type Editor = {
+    body: Array<Widget> | [],
+    selected: string
 }
 
-type Border = {
-    top: string,
-    bottom: string,
-    left: string
+
+
+type Action = {
+    type: string,
+    payload?: Record<any, any> | string
 }
 
-type State = {
-    margin: Margin,
-    padding: Padding,
-    border: Border
-}
-
-type ComponentSettings = {
-    id: string
-    margin: Margin
+type defaultEditorContext = {
+    state: Editor,
+    editorDispatch: Dispatch<Action>
 }
