@@ -13,7 +13,8 @@ export const ACTIONS = {
     GET_EDITOR: 'GET_EDITOR',
     SET_SELECTED: 'SET_SELECTED',
     ADD_WIDGET: 'ADD_WIDGET',
-    ADD_CONTENT: 'ADD_CONTENT'
+    ADD_CONTENT: 'ADD_CONTENT',
+    UPDATE_WIDGET: 'UPDATE_WIDGET'
 }
 
 export const editorReducer = (state: Editor, action: Action) : Editor => {

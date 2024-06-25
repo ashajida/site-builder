@@ -3,12 +3,13 @@ import { Widget } from '../../../types'
 
 type Props = {
     id: string,
-    content: string
+    content: string,
+    styles: Record<any, any>
 }
 
-const Text = ({id, content}: Props) => {
+const Text = ({id, content, styles}: Props) => {
   return (
-    <p>{content}</p>
+    <p style={{...styles}}>{content}</p>
   )
 }
 

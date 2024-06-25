@@ -5,7 +5,7 @@ type Widget = {
     name: string,
     content: Array<Widget>,
     type: string,
-    style: Record<any, any>
+    style?: Record<any, any>
 }
 
 type Editor = {

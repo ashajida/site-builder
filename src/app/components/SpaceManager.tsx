@@ -1,50 +1,33 @@
 'use client'
 
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react'
-import { selectedComponentContext, sidebarContext } from '../context/context'
 
-type State = {
-    margin: Margin,
-    padding: Padding,
-    border: Border
-}
 
 const SpaceManager = () => {
 
-  const [marginState, setMargin] = useState<Margin>({
+  const [marginState, setMargin] = useState({
     top: '0',
     left: '0',
     right: '0',
     bottom: '0'
   });
 
-  const [paddingState, setPadding] = useState<Margin>({
+  const [paddingState, setPadding] = useState({
     top: '',
     left: '',
     right: '',
     bottom: ''
   });
 
-  const [borderState, setBorder] = useState<Margin>({
+  const [borderState, setBorder] = useState({
     top: '',
     left: '',
     right: '',
     bottom: ''
   });
-
-  const {settings, setSettings} = useContext(sidebarContext);
-  const {selectedComponent, setSelectedComponent} = useContext(selectedComponentContext);
 
   useEffect(() => {
 
-    if(!selectedComponent) return;
-    console.log(selectedComponent);
-  
-    const result = settings.find((item) => item.id == selectedComponent )
-
-    if(result) {
-      setMargin(result?.margin!);
-    }
     
     return () => {
         setMargin({
@@ -54,13 +37,12 @@ const SpaceManager = () => {
           bottom: '0'
         })
     }
-  }, [setMargin, selectedComponent, settings]);
+  }, []);
 
 
   const handleMarginInput = (e: ChangeEvent<HTMLInputElement>) => {
     const input = e.target;
-    const result = settings.map((item: ComponentSettings) => item.id == selectedComponent ? { ...item,  [input.name] : input?.value } : item  );
-    setSettings(result);
+    const result = input;
   }
 
   const handlePaddingInput = (e: ChangeEvent<HTMLInputElement>) => {

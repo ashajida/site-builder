@@ -1,12 +1,33 @@
 'use client'
 
-import React, { useContext, useReducer, useState } from 'react'
+import React, { useContext, useEffect, useReducer, useState } from 'react'
 import SpaceManager from '../components/SpaceManager';
 import Col2 from '../components/Col2';
-import { sidebarContext, selectedComponentContext, editorReducer, defaultEditor, editorContext } from '../context/context';
+import { editorReducer, defaultEditor, editorContext, ACTIONS } from '../context/context';
 import { useRouter } from 'next/navigation';
+import { componantMap } from '../helpers/componentMap';
+import Sidebar from '../components/sidebar/sidebar';
 
-
+const data = 
+    {
+        id: '12',
+        content: [
+            {
+                id: '1',
+                content: 'This is some Text',
+                type: 'Text',
+                name: 'Text'
+            },
+            {
+                id: '2',
+                content: [],
+                type: 'Col2',
+                name: 'Col2'
+            }
+        ],
+        name: 'Col2',
+        type: 'Col2'
+    };
 
 
 const Cms = () => {
@@ -16,47 +37,43 @@ const Cms = () => {
         selected: ''
     });
 
-    const ComponentsMap = {
-        Col2,
-    } as const
+    let i = false;
+    useEffect(() => {
+        if(i) return;
+        i = true;
+        editorDispatch({
+            type: ACTIONS.ADD_WIDGET,
+            payload: data
+        });
+
+        console.log(i);
+
+        return () => {
+           
+        }
+    }, [])
 
     return (
         <div className='grid grid-cols-4'>
             <editorContext.Provider value={{state, editorDispatch}}>
             <div className=" col-span-3 bg-slate-100 h-[100vh]">
-    1           <div className='w-[50%] mx-auto bg-white h-[100%] p-4'>
+               <div className='w-[50%] mx-auto bg-white h-[100%] p-4'>
                     {
                         (state.body.length > 0) 
                         &&
-                        state.body.map(({ name, id, content }) => {
-                            const Comp = ComponentsMap['Col2'];
+                        state.body.map((widget, index) => {
+                            console.log(widget);
+                            const Comp = componantMap[widget.name];
                             return(
                                 <>
-
-                                    if(content.length > 0) {
-                                         <Comp id='123' />
-                                        content.map(({ name }) => {
-                                            const InnerComp = ComponentsMap['Col2'];
-                                            return(
-                                                <InnerComp></InnerComp>
-                                            );
-                                        })
-                                        </Comp>
-                                    }
-
-                                    <Comp id='123' />
+                                    <Comp key={widget.id} {...widget} />
                                 </>
                             );
                         })
                     }
                 </div>
             </div> 
-                <div className="col-span-1 bg-white h-[100vh] p-4">
-                    <form>
-                        <SpaceManager />
-                        <button className='btn btn-primary'></button>
-                    </form>
-                </div>
+            <Sidebar />
             </editorContext.Provider>
         </div>
     )

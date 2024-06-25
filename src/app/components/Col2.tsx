@@ -7,10 +7,11 @@ import { componantMap } from '../helpers/componentMap';
 
 type Props = {
   id: string,
-  content: Array<Widget>
+  content: Array<Widget>,
+  styles: Record<any, any>
 }
 
-const Col2 = ({ id, content }: Props) => {
+const Col2 = ({ id, content, styles }: Props) => {
 
 
   const handleClick = () => {
@@ -27,18 +28,15 @@ const Col2 = ({ id, content }: Props) => {
 
 
   return (
-    <div id={id} onClick={handleClick} className={`grid lg:grid-cols-2 w-100 gap-5 hover:bg-black`} style={
-     {
-     }
-    }>
+    <div id={id} onClick={handleClick} className={`grid lg:grid-cols-2 w-100 gap-5 hover:bg-black`} style={{ ...styles }}>
      {
      (content.length > 0) 
      &&
      content.map((widget, index) => {
       const Comp = componantMap[widget.name]
       return(
-        <div key={index} className='col-span-1'>
-        <Comp></Comp>
+        <div key={widget.id} className='col-span-1' style={{...widget.style}} id={widget.id}>
+        <Comp {...widget}></Comp>
         </div>
       );
      })
