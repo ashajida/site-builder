@@ -3,9 +3,10 @@ import { Dispatch } from "react"
 type Widget = {
     id: string,
     name: string,
-    content: Array<Widget>,
+    content?: Array<Widget> | string,
     type: string,
-    style?: Record<any, any>
+    styles?: Record<any, any>,
+    dropId?: string,
 }
 
 type Editor = {
@@ -17,7 +18,7 @@ type Editor = {
 
 type Action = {
     type: string,
-    payload?: Record<any, any> | string
+    payload?: Record<any, any> | string | Array<Widget>
 }
 
 type defaultEditorContext = {

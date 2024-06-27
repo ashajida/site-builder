@@ -14,7 +14,7 @@ export const ACTIONS = {
     SET_SELECTED: 'SET_SELECTED',
     ADD_WIDGET: 'ADD_WIDGET',
     ADD_CONTENT: 'ADD_CONTENT',
-    UPDATE_WIDGET: 'UPDATE_WIDGET'
+    UPDATE_WIDGET: 'UPDATE_WIDGET',
 }
 
 export const editorReducer = (state: Editor, action: Action) : Editor => {
@@ -40,6 +40,22 @@ switch (action.type) {
             ]
         }
         break;
+    case ACTIONS.UPDATE_WIDGET:
+        return {
+            ...state,
+            body: [
+                ...action.payload as Array<Widget>
+            ]
+        }
+        break;
+    case ACTIONS.SET_SELECTED:
+    return {
+        ...state,
+        selected: action.payload as string
+    }
+    break;
+
+    
 
     default:
         return state;

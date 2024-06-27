@@ -18,7 +18,7 @@ type DropState = {
   active: boolean
 }
 
-const Col2 = ({ id, content, styles }: Props) => {
+const LayoutThree = ({ id, content, styles }: Props) => {
 
   const { state, editorDispatch } = useContext(editorContext);
 
@@ -30,7 +30,11 @@ const Col2 = ({ id, content, styles }: Props) => {
     {
       id: '1',
       active: false
-    }
+    },
+    {
+        id: '2',
+        active: false
+      }
   ])
   
   const handleOnDrop = (e: Event) => {
@@ -119,6 +123,20 @@ const handleOnDragOver = (e: DragEvent) => {
          })
       }
      </div>
+     <div drop-id="2" className={`col-span-1 ${!dropState[1].active ? 'bg-slate-50 border h-[300px] rounded-md' : ''}`} onDrop={handleOnDrop} onDragOver={handleOnDragOver}>
+     {
+        content.map((widget, index) => {
+          const Comp = componantMap[widget.name]
+          if(widget.dropId == '2') {
+          return(
+            <>
+            <Comp {...widget}></Comp>
+            </>
+          );
+        }
+         })
+      }
+     </div>
      </>
      }
 
@@ -126,6 +144,7 @@ const handleOnDragOver = (e: DragEvent) => {
       (content.length < 0) 
       &&
       <>
+      <div className='col-span-1 bg-slate-50 border rounded-md h-[300px] w-full'></div>
       <div className='col-span-1 bg-slate-50 border rounded-md h-[300px] w-full'></div>
       <div className='col-span-1 bg-slate-50 border rounded-md h-[300px] w-full'></div>
      </>

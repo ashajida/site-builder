@@ -8,6 +8,7 @@ type Props = {
 }
 
 const Text = ({id, content, styles}: Props) => {
+    console.log(styles)
   return (
     <p style={{...styles}}>{content}</p>
   )
