@@ -45,7 +45,7 @@ const Styles = () => {
     }
   
   return (
-    <div className="w-full bg-white h-[100vh] p-4">
+    <div className="w-full bg-white mb-5">
     <div className='flex justify-around gap-[8px] mb-2 border rounded-md p-2'>
     <button data-align='left' onClick={handleAlignment}>
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-text-left" viewBox="0 0 16 16">
@@ -119,7 +119,6 @@ const Styles = () => {
       </button>
     </div>
     <button className='btn btn-primary'></button>
-    <Widgets />
 </div>
   )
 }

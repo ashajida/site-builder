@@ -20,6 +20,8 @@ type DropState = {
 
 const Col2 = ({ id, content, styles }: Props) => {
 
+  console.log('test..',content.length)
+
   const { state, editorDispatch } = useContext(editorContext);
 
   const [dropState, setDropState] = useState<Array<DropState>>([
@@ -85,7 +87,7 @@ const handleOnDragOver = (e: DragEvent) => {
 }
 
   return (
-    <div id={id} className={`grid lg:grid-cols-2 w-100 gap-5`} style={{ ...styles }}>
+    <section id={id} className={`grid lg:grid-cols-2 w-100 gap-5 py-8`} style={{ ...styles }}>
     
      {
      (content.length > 0) 
@@ -121,9 +123,9 @@ const handleOnDragOver = (e: DragEvent) => {
      </div>
      </>
      }
-
+    
     {
-      (content.length < 0) 
+      (!dropState[0].active || !dropState[1].active ) 
       &&
       <>
       <div className='col-span-1 bg-slate-50 border rounded-md h-[300px] w-full'></div>
@@ -133,7 +135,7 @@ const handleOnDragOver = (e: DragEvent) => {
 
 
 
-    </div>
+    </section>
   )
 }
 

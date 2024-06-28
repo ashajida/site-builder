@@ -39,21 +39,33 @@ const Cms = () => {
         selected: ''
     });
 
+    const handleOnDrop = (e: Event) => {
+        e.preventDefault();
+        const id = e.dataTransfer.getData("text") as string;
+    
+        const x = {
+          id: '12378',
+          name: id,
+          type: id,
+          content: []
+      } as Widget;
+
+          
+    editorDispatch({
+        type: ACTIONS.ADD_WIDGET,
+        payload: x
+    })
+
+    console.log(state)
+    
+    
+    }
+    
+    const handleOnDragOver = (e: DragEvent) => {
+        e.preventDefault();
+    }
+
     let i = false;
-    useEffect(() => {
-        if(i) return;
-        i = true;
-        editorDispatch({
-            type: ACTIONS.ADD_WIDGET,
-            payload: data
-        });
-
-        console.log(i);
-
-        return () => {
-           
-        }
-    }, [])
 
     const handleWidgetClick = (event: MouseEvent) => {
         let element = event.target as HTMLElement;
@@ -93,11 +105,12 @@ const Cms = () => {
                         </svg>
                     </button>
                 </div>
-               <div className='w-[50%] mx-auto bg-white h-[100%] p-4'>
+               <div className='w-[50%] mx-auto bg-white h-[100vh] p-4 border rounded-md'  onDrop={handleOnDrop} onDragOver={handleOnDragOver}>
                     {
                         (state.body.length > 0) 
                         &&
                         state.body.map((widget, index) => {
+                            console.log('data', state);
                             const Comp = componantMap[widget.name];
                             return(
                                 <>

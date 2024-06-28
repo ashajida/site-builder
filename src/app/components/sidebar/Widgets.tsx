@@ -10,7 +10,7 @@ const Widgets = () => {
 
   return (
     <div className='flex gap-2'>
-        <div id="Col2" className='cursor-pointer border rounded-md flex flex-col justify-center w-[100px] h-[100px] bg-slate-50'  draggable="true" onDragStart={drag}>
+        <div id="Col2" data-meta='{}' className='cursor-pointer border rounded-md flex flex-col justify-center w-[100px] h-[100px] bg-slate-50'  draggable="true" onDragStart={drag}>
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="mx-auto bi bi-layout-split" viewBox="0 0 16 16">
               <path d="M0 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm8.5-1v12H14a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zm-1 0H2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h5.5z"/>
             </svg>
